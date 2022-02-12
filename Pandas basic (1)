@@ -1,12 +1,22 @@
-# 판다스
+# Pandas 데이터분석 패키지 불러오기
+# Pandas의 특징: 행과 열로 이루어진 2차원 테이블 형태를 잘 다룰 수 있는 유용한 함수가 많음.
 import pandas as pd
 
 # csv 파일 불러오기
 bike_data = pd.read_csv('Data/bike_usage_0.csv')
 print(bike_data)
 
+# csv 파일 탭 구분하여 불러오기 (seperator "구분자")
+population = pd.read_csv('Data/population_by_Gu.txt', sep = "\t")
+
 # 새 변수 지정
 bike = bike_data
+
+# 인구 데이터 열 레이블 별 요약 테이블 (총 데이터 갯수, 총 열 갯수 + 인덱스 레인지, 데이터 타입, 데이터 타입별 각각의 갯수, 이상치 확인 가능)
+population.info
+
+# weather 데이터 기술 통계량 확인
+weather.describe()
 
 # 결측치 확인
 bike.isnull()
@@ -17,10 +27,10 @@ bike.isnull().sum()
 # 결측치 값 데이터의 평균
 bike.isnull().mean()*100
 
-# 자전거 데이터 프레임의 상위 5행 데이터
+# 자전거 데이터 프레임의 상위 5개 행 데이터
 bike.head()
 
-# 자전거 데이터 프레임의 상위 10행 데이터
+# 자전거 데이터 프레임의 상위 10개 행 데이터
 bike.head(10)
 
 # 자전거 데이터 프레임의 하위 5행 데이터
@@ -29,29 +39,20 @@ bike.tail()
 # 자전거 데이터의 모든 열 리스트
 bike.columns
 
-# 결측치 값 데이터의 평균
+# 결측치 값 데이터 개수 요약 (총 데이터 갯수, 총 열 갯수)
 bike.shape
 
-
+# 자전거 데이터 프레임의 멤버십 타입 별 데이터 종류
 bike['Membership_type'].unique()
+
+# 자전거 데이터 프레임의 멤버십 타입 별 값 빈도 수 요약
 bike['Membership_type'].value_counts()
+
+# 자전거 데이터 프레임의 멤버십 타입 별 값 빈도 수 요약 (비율화)
 bike['Membership_type'].value_counts(normalize = True)
+
+# 자전거 데이터 프레임의 모멘텀 열에서 "\N"인 값이 있는 행만 찾기
 bike[bike.Momentum == '\\N']
 
 # 해당 컬럼만 보는 법: 컬럼 명 또는 대괄호["컬럼명"]
 bike['Distance']
-
-population = pd.read_csv('Data/population_by_Gu.txt')
-population.isnull()
-population.info
-
-# csv 파일 탭 구분하여 불러오기
-population = pd.read_csv('Data/population_by_Gu.txt', sep = "\t")
-population.info
-population.describe()
-
-# weather csv 파일 불러오기
-weather = pd.read_csv('Data/weather.csv')
-
-# weather 데이터 기술 통계량 확인
-weather.describe()
