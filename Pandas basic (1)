@@ -1,0 +1,57 @@
+# 판다스
+import pandas as pd
+
+# csv 파일 불러오기
+bike_data = pd.read_csv('Data/bike_usage_0.csv')
+print(bike_data)
+
+# 새 변수 지정
+bike = bike_data
+
+# 결측치 확인
+bike.isnull()
+
+# 결측치 값 데이터 합계 요약
+bike.isnull().sum()
+
+# 결측치 값 데이터의 평균
+bike.isnull().mean()*100
+
+# 자전거 데이터 프레임의 상위 5행 데이터
+bike.head()
+
+# 자전거 데이터 프레임의 상위 10행 데이터
+bike.head(10)
+
+# 자전거 데이터 프레임의 하위 5행 데이터
+bike.tail()
+
+# 자전거 데이터의 모든 열 리스트
+bike.columns
+
+# 결측치 값 데이터의 평균
+bike.shape
+
+
+bike['Membership_type'].unique()
+bike['Membership_type'].value_counts()
+bike['Membership_type'].value_counts(normalize = True)
+bike[bike.Momentum == '\\N']
+
+# 해당 컬럼만 보는 법: 컬럼 명 또는 대괄호["컬럼명"]
+bike['Distance']
+
+population = pd.read_csv('Data/population_by_Gu.txt')
+population.isnull()
+population.info
+
+# csv 파일 탭 구분하여 불러오기
+population = pd.read_csv('Data/population_by_Gu.txt', sep = "\t")
+population.info
+population.describe()
+
+# weather csv 파일 불러오기
+weather = pd.read_csv('Data/weather.csv')
+
+# weather 데이터 기술 통계량 확인
+weather.describe()
