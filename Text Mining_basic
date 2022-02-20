@@ -1,0 +1,26 @@
+# 텍스트 마이닝: 데이터로부터 유용한 인사이트를 발굴하는 데이터마이닝의 한 종류
+# 정형 및 비정형 데이터를 자연어 처리방식(Natural Launguage Processing)과 문서처리 방법을 적용하여 유용한 정보를 추출/가공하는 것을 목적으로 하는 기술
+
+- 자연언어 : 정보를 전달하는 수단, 인간이 일상생활에서 사용하는 언어, 특정집단에서 사용되는 모국어 집합 (인공언어에 대응되는 개념)
+- 인공언어: 특정 법칙에 따라 적절하게 구성된 문자열들의 집합, 특정 목적을 위해 인위적, 의도적으로 만든 언어 (수식, 프로그래밍 언어)
+- 기업 활용: 콘텐츠 강화, 소셜 미디어 데이터 분석(의견과 감성 반응 살핌), 고객 클레임분석을 통해 부정행위 탐지
+- 영역: 텍스트 분류, 감성분석, 텍스트 요약, 텍스트 군집화 및 유사도 분석 (clustering) 등
+
+
+# collections 모듈의 defaultdict, OrderedDict 함수 호출하여 텍스트 분석하기
+
+  text = """
+  A press release is the quickest and easiest way to get free publicity. 
+  If well written, a press release can result in multiple published articles about your firm and its products. 
+  And that can mean new prospects contacting you asking you to sell to them. ….
+  """.lower().split()
+
+from collections import defaultdict
+
+word_count = defaultdict(lambda: 0)             # Default 값을 0으로 설정
+for word in text:
+    word_count[word] += 1
+
+from collections import OrderedDict
+for i, v in OrderedDict(sorted(word_count.items(), key=lambda t: t[1], reverse=True)).items():
+    print(i, v)
