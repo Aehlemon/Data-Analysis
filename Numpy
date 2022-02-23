@@ -1,0 +1,91 @@
+# Numpy (Numerical Python): 산술 계산을 위한 패키지
+# 다차원 배열인 ndarray는 빠른 배열 계산을 제공
+# 대용량 데이터 배열을 효율적으로 다룰 수 있도록 설계되어 있어 많이 사용됨.
+# 반복문을 작성할 필요없이 전체 데이터 배열을 빠르게 계산할 수 있는 표준 수학 함수
+# 선형대수, 난수생성기, 푸리에 변환 가능
+# 사용목적: 일반적인 산술 데이터 처리를 위한 기본 라이브러리를 제공
+# 연산 처리 후 통계나 분석 처리하기 위해서는 Pandas를 사용
+
+ # 다차원 배열 객체
+ - Numpy는 ndarray라고 하는 N차원 배열 객체를 사용
+ - 1차원: Vector
+ - 2차원: Matrix
+ - 3차원: Tensor
+
+
+import numpy as np
+
+my_arr = np.arange(100)
+my_list = list(range(100))
+print(type(my_arr))
+print(type(my_list))
+-->
+<class 'numpy.ndarray'>
+<class 'list'>
+
+# 2X3 배열을 랜덤 생성
+data = np.random.randn(2,3) # 가우시안 정규분포 내 확률로 생성
+print(data)
+-->
+[[ 1.7723874   2.17617847 -0.3567448 ]
+ [ 0.95989838 -0.80518179  0.63947162]]
+ 
+# list로 ndarray 생성하기
+data1 = [5, 7, 8, 1, 4]
+type(data1)
+-->
+list
+
+arr1 = np.array(data1)
+type(arr1)
+print(arr1)
+-->
+[5 7 8 1 4]
+
+# 2차원 배열 생성 예제
+arr1 = np.array([[1, 2, 3],
+                 [4, 5, 6]])
+print(arr1)
+-->
+[[1 2 3]
+ [4 5 6]]
+ 
+# numpy 배열의 산술연산
+#numpy 배열은 반복문을 작성하지 않고 데이터를 일괄 처리할 수 있음: "벡터화"라고 부름
+
+print(arr1*arr1)
+print(arr1+arr1)
+print(1 / arr1)
+print(arr1 >= arr1)
+-->
+[[ 1  4  9]
+ [16 25 36]]
+[[ 2  4  6]
+ [ 8 10 12]]
+ [[1.         0.5        0.33333333]
+ [0.25       0.2        0.16666667]]
+ [[ True  True  True]
+ [ True  True  True]]
+ 
+ # 행렬곱
+print(np.dot(arr1, np.transpose(arr1)))
+-->
+[[14 32]
+ [32 77]]
+ 
+ # 3X3 배열 만들기 (범위 지정 후 모양을 다듬어서 생성)
+ # 1차원 배열 생성
+arr1 = np.array(range(1, 10))
+print(arr1)
+--> 
+[1 2 3 4 5 6 7 8 9]
+
+
+# 2차원 배열 생성
+arr2 = np.array(range(1,10)).reshape(3, 3)
+print(arr2)
+-->
+[[1 2 3]
+ [4 5 6]
+ [7 8 9]]
+ 
